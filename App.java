@@ -7,7 +7,7 @@ import java.sql.Date;
 
 public class App {
     public static void main(String[] args) {
-        String url = "jdbc:mysql://localhost:3310/hospital_db";
+        String url = "jdbc:mysql://localhost:3306/hospital_db";
         String user = "root";
         String pass = "1234";
 
@@ -43,6 +43,13 @@ public class App {
                     ps2.setInt(1, 10);
                     ps2.executeUpdate();
                 }
+
+                String appointmentSql = "DELETE FROM appointments WHERE appointment_id = ?";
+                try( PreparedStatement ps3 = conn.prepareStatement(appointmentSql)) {
+                    ps3.setInt(1, 15);
+                    ps3.executeUpdate();
+                }
+                
             } catch (Exception e) {
                 e.printStackTrace();
             }
